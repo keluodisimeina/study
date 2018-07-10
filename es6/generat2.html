@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="node_modules/yield-runner-blue/index.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    runner(function *(){
+        let data1=yield $.ajax({url:"jsonArr.txt",dataType:"json"})
+        let data2=yield $.ajax({url:"promiseArr.txt",dataType:"json"})
+        console.log(data1,data2)
+    })
+</script>
+</html>

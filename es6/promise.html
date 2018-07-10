@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <script>
+        // let p=new Promise(function(resolve,reject){
+        //     //resolve成功
+        //     //reject失败
+        //     $.ajax({
+        //         url:"promiseArr.txt",
+        //         dataType:"json",
+        //         success(arr){
+        //             resolve(arr);
+        //         },
+        //         error(err){
+        //             reject(err);
+        //         }
+        //     })
+
+        // })
+        // let p2=new Promise(function(resolve,reject){
+        //     //resolve成功
+        //     //reject失败
+        //     $.ajax({
+        //         url:"jsonArr.txt",
+        //         dataType:"json",
+        //         success(arr){
+        //             resolve(arr);
+        //         },
+        //         error(err){
+        //             reject(err);
+        //         }
+        //     })
+
+        // })
+
+        // p.then(function(arr){
+        //     alert("成功"+arr)
+        // },function (err) {
+        //     alert("失败"+err)
+        // })
+
+
+
+
+        // function createPromise(url){
+        //     return new Promise(function(resolve,reject){
+        //         //resolve成功
+        //         //reject失败
+        //         $.ajax({
+        //             // url:url,
+        //             url,
+        //             dataType:"json",
+        //             success(arr){
+        //                 resolve(arr);
+        //             },
+        //             error(err){
+        //                 reject(err);
+        //             }
+        //         })
+
+        //     })
+        // }
+        // let p=new createPromise("jsonArr.txt")
+        // let p2=new createPromise("promiseArr.txt")
+        
+        // Promise.all([
+        //     p,p2
+        // ]).then(function (arr) {
+        //     let [res1,res2]=arr
+        //     alert("all success")
+        //     console.log(res1)
+        //     console.log(res2)
+        // },function(){
+        //     alert("at least one fail")
+        // });
+
+
+
+            // let p=$.ajax({
+            //     url:"jsonArr.txt",
+            //     dataType:"json"
+            // })
+
+        Promise.all([
+            $.ajax({url:"jsonArr.txt",dataType:"json"}),
+            $.ajax({url:"promiseArr.txt",dataType:"json"}) 
+        ]).then(result=>{
+            let [result1,result2]=result;
+            alert("success")
+            console.log(result1);
+            console.log(result2);
+        },err=>{
+            alert("fail")
+        })
+
+        /*Promise.race([])//先来哪个请求就执行哪个*/
+
+    </script>
+</body>
+</html>

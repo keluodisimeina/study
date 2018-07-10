@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .mine{ background: blue}
+    </style>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+</head>
+<body>
+    用户：<input type="text" name="user" id="user">
+    密码：<input type="password" name="password" id="pass">
+    <input type="button" value="注册" id="btn1">
+    <input type="button" value="登录" id="btn2">
+    <hr>
+
+    <textarea name="" id="txt1" cols="80" rows="4"></textarea>
+    <input type="button" value="发送" id="btn_send">
+    <ul id="ul">
+        
+    </ul>
+
+</body>
+<script>
+    let cur_user='';
+    let sock=io.connect('ws://localhost:8080')
+    btn1.onclick=function(){
+        sock.emit('reg',user.value,pass.value);
+        sock.once('reg_ret',(code,msg)=>{
+            if(code){
+                alert(`注册失败`+msg)
+            }else{
+                alert(`注册成功`)
+            }
+        })
+    }
+
+
+    sock.on('login_ret',(code,msg)=>{
+        if(code){
+            alert('登录有误'+msg)
+        }else{
+            alert('登录成功')
+            cur_user=user.value;
+        }
+    })
+
+    btn2.onclick=function(){
+        sock.emit('login',user.value,pass.value);
+        
+    }
+
+
+    sock.on('msg_ret',(code,msg)=>{
+        if(code){
+            alert('失败'+msg)
+        }else{
+            let oLi=document.createElement('li')
+            oLi.className='mine'
+            oLi.innerHTML=`<h4>${cur_user}</h4><p>${txt1.value}</p>`
+            ul.appendChild(oLi)
+            txt1.value='';
+        }
+    });
+
+    sock.on(`msg`,(name,txt)=>{
+        let oLi=document.createElement('li')
+            
+            oLi.innerHTML=`<h4>${name}</h4><p>${txt}</p>`
+            ul.appendChild(oLi)
+    })
+    //sock.emit('msg',txt1.value)
+
+
+    btn_send.onclick=function(){
+        sock.emit('msg',txt1.value)
+    }
+
+</script>
+</html>

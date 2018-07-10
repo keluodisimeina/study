@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //generat生成器
+
+    /*11111111111*/
+    // function * show(){
+    //     alert("a");
+    //     yield;
+    //     alert("b");
+    // }
+    // let genObj=show();
+    //  genObj.next();
+    //  genObj.next();
+
+
+    /*22222222222*/
+    // function * show(n,m){
+    //     alert(`${n},${m}`)
+    //     alert("a");
+    //     let a=yield;
+    //     alert(m)
+    //     alert("b");
+    //     console.log(a)
+    // }
+    // let genObj=show(99,88);
+    // genObj.next();
+    // genObj.next(5);
+
+
+    /*333333333333333*/
+    function * show(n,m){
+        alert("first");
+
+        let a=yield n;
+        console.log("a is"+a);
+
+
+        alert("second")
+        return 100;
+    }
+    let gen=show(99);
+    let res1=gen.next(12);
+    let res2=gen.next(5);
+    console.log(res1);
+    console.log(res2);
+
+</script>
+</html>

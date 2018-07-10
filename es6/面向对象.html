@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class User{
+        constructor(name,pass){
+            this.name=name;
+            this.pass=pass;
+        }
+        showName(){
+            alert(this.name);
+        }
+        showPass(){
+            alert(this.pass);
+        }
+    }
+
+    class VipUser extends User{
+        constructor(name,pass,level){
+            super(name,pass);//执行父类的构造函数
+            this.level=level;
+        }
+        showLevel(){
+            alert(this.level);
+        }
+    }
+
+var a=new VipUser("das","dddddd",11)
+a.showName();
+a.showPass();
+a.showLevel();
+</script>
+</html>
